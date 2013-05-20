@@ -1,6 +1,23 @@
 CadastreNow::Application.routes.draw do
-  root :to =>"home#index"
+  #get "users/show"
+
+  # authenticated :user do
+  #  root :to => 'home#index'
+  # end
+
   devise_for :users
+  resources :users
+    devise_scope :user do
+      match "sign_up" => "devise::registrations#new"
+      match "edit_account" => "devise::registrations#edit"
+      match "sign_in" => "devise::sessions#new"
+      match "sign_out" => "devise::sessions#destroy"
+      match "password_recovery" => "devise::passwords#new"
+    end
+
+  #match '/' => 'users#show', :constraints => { :subdomain => /.+/}
+  root :to => "home#index"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

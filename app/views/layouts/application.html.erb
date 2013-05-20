@@ -2,13 +2,38 @@
 <html>
 <head>
   <title>CadastreNow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLas6nYicrMpgDTSUtzjtlwtVLIdsEGsU&sensor=true&language=en&region=PL"></script>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="container-fluid">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="btn btn-navbar" data-toogle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">CadastreNow</a>
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <%= render 'devise/shared/navigation' %>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<%= yield %>
+      <%= render 'layouts/messages' %>
+
+      <%= yield %>
+
+    </div>
 
 </body>
 </html>

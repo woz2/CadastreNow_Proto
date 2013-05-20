@@ -1,3 +1,45 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 3% }
+
+h1 {
+  font-family: "Skolar Bold",serif;
+  font-weight: 700;
+  font-size: 200%;
+  font-style: normal;
+}
+
+.container {
+  height: auto;
+  margin-bottom: 1%;
+  width: 70%;
+}
+
+.title{
+  font-weight: bold;
+}
+
+@media(max-width: 480px) {
+
+  .container {
+    width: 90%;
+  }
+
+  H1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+}
+
+#map-canvas {
+  height: 80%;
+  clear: both;
+}
+
+#map-canvas img {
+  height: auto;
+  max-width: none;
+}

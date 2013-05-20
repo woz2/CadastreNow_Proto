@@ -1,10 +1,12 @@
 class User
   include Mongoid::Document
+
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -37,9 +39,26 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-  
-  field :user_name, :type => String
-  validates_presence_of :user_name
-  validates_uniqueness_of :user_name, :email, :case_sensitive => false
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+
+  #Ads field UserName to the user model and makes it unique
+  field :UserName, :type => String
+  validates_presence_of :UserName
+
+  # Virtual attribute for authenticating by either username or email
+  # This is in addition to a real persisted field like 'username'
+  attr_accessor :login
+
+  validates_uniqueness_of :UserName, :email, :case_sensitive => false
+  attr_accessible :UserName, :email, :password, :password_confirmation, :remember_me, :login
+
+  # function to handle user's login via email or username
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login).downcase
+      where(conditions).where('$or' => [ {:UserName => /^#{Regexp.escape(login)}$/i}, {:email => /^#{Regexp.escape(login)}$/i} ]).first
+    else
+      where(conditions).first
+    end
+  end
+
 end

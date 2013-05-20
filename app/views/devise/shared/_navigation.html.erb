@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+    <li><a>Hello <%= current_user.UserName %></a></li>
+    <li>
+      <%= link_to('Edit account', 'edit_account') %>
+    </li>
+    <li>
+      <%= link_to('Logout', 'sign_out', :method => 'delete') %>
+    </li>
+<% else %>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+
+      <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+        <%= render :partial => 'devise/shared/sign-in-form' %>
+      </div>
+    </li>
+    <li class="divider-vertical"></li>
+    <li>
+      <%= link_to('Sign up', 'sign_up') %>
+    </li>
+<% end %>
