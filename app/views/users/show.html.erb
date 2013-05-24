@@ -2,3 +2,17 @@
 <p>User Name: <%= @user.UserName %></p>
 <p>Email: <%= @user.email %></p>
 <p>Sign-in time: <%= @user.current_sign_in_at %></p>
+
+<div class="row-fluid">
+    <div class="span4">
+      <h1>Home#index</h1>
+      <h3>Home</h3>
+      <% @users.each do |user| %>
+          <p>User: <%=link_to user.UserName, user %></p>
+      <% end %>
+    </div>
+
+    <div class="span8">
+      <h1>Zoom-in to explore cadastral map</h1>
+    </div>
+</div>

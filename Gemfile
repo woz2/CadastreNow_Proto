@@ -25,6 +25,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -41,8 +42,11 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem "mongoid", ">= 3.1.1"
+
+gem "mongoid", " 3.0.5"
+gem "geocoder", " 1.1.5"
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
+#gem "nifty-generators", :group => :development
 gem "database_cleaner", ">= 0.9.1", :group => :test
 gem "mongoid-rspec", ">= 1.6.0", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test
@@ -57,3 +61,7 @@ gem "better_errors", ">= 0.6.0", :group => :development
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "bson_ext", ">= 1.3.1"
+gem "yajl-ruby"
+
+
+gem "mocha", :require => false
